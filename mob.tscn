@@ -16,20 +16,20 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3b2hk"]
 
-[node name="Mob" type="RigidBody2D"]
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_qq405")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["mobs"]]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_h0lxh")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["mobs"]]
 scale = Vector2(3.5, 3.5)
 shape = SubResource("RectangleShape2D_3b2hk")
 metadata/_edit_group_ = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["mobs"]]
 metadata/_edit_group_ = true

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://75dmqu0nkfa4"]
+[gd_scene load_steps=8 format=3 uid="uid://75dmqu0nkfa4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4lnlv"]
 [ext_resource type="PackedScene" uid="uid://c6o2mpqmra1io" path="res://mob.tscn" id="2_cxehb"]
 [ext_resource type="PackedScene" uid="uid://dia3n6df8bj4n" path="res://player.tscn" id="3_cf7ta"]
 [ext_resource type="PackedScene" uid="uid://0p6m86cq8vya" path="res://hud.tscn" id="4_mrcpv"]
+[ext_resource type="AudioStream" uid="uid://r4s8qdcc2osn" path="res://Music.mp3" id="5_c500y"]
+[ext_resource type="AudioStream" uid="uid://d2l6h2scax0ll" path="res://Death.mp3" id="6_yr3aq"]
 
 [sub_resource type="Curve2D" id="Curve2D_3jpc1"]
 _data = {
@@ -45,8 +47,10 @@ curve = SubResource("Curve2D_3jpc1")
 [node name="HUD" parent="." instance=ExtResource("4_mrcpv")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c500y")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yr3aq")
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

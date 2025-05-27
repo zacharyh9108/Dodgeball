@@ -15,13 +15,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vj6u7"]
-size = Vector2(62, 62)
+size = Vector2(52, 52)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_m7iat")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_y8l6h")
 metadata/_edit_group_ = true
 

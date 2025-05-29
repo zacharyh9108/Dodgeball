@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var attempt = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,8 @@ func game_over():
 	$DeathSound.play()
 
 func new_game():
+	attempt += 1
+	$HUD.update_attempt(attempt)
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()

@@ -15,6 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3b2hk"]
+size = Vector2(13.8667, 19.2)
 
 [node name="Mob" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
@@ -22,12 +23,13 @@ gravity_scale = 0.0
 script = ExtResource("1_qq405")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["mobs"]]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.17, 0.196)
 sprite_frames = SubResource("SpriteFrames_h0lxh")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["mobs"]]
-scale = Vector2(3.5, 3.5)
+position = Vector2(-1, 0.999999)
+scale = Vector2(3.75, 3.75)
 shape = SubResource("RectangleShape2D_3b2hk")
 metadata/_edit_group_ = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://75dmqu0nkfa4"]
+[gd_scene load_steps=9 format=3 uid="uid://75dmqu0nkfa4"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4lnlv"]
 [ext_resource type="PackedScene" uid="uid://c6o2mpqmra1io" path="res://mob.tscn" id="2_cxehb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0p6m86cq8vya" path="res://hud.tscn" id="4_mrcpv"]
 [ext_resource type="AudioStream" uid="uid://r4s8qdcc2osn" path="res://Music.mp3" id="5_c500y"]
 [ext_resource type="AudioStream" uid="uid://d2l6h2scax0ll" path="res://Death.mp3" id="6_yr3aq"]
+[ext_resource type="Texture2D" uid="uid://dfd2fei83js3u" path="res://Hexagon-Pattern.png" id="7_qvei2"]
 
 [sub_resource type="Curve2D" id="Curve2D_3jpc1"]
 _data = {
@@ -24,6 +25,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1.73271e-06, 0.628725, 0.629718, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 740.0
+texture = ExtResource("7_qvei2")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5

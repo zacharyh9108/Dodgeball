@@ -6,7 +6,7 @@ var attempt = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Input.is_action_pressed("start_game"):
+	if Input.is_action_pressed("start_game_input"):
 		new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,6 +21,7 @@ func game_over():
 	$DeathSound.play()
 
 func new_game():
+	$HUD/LeaderboardButton.hide()
 	attempt += 1
 	$HUD.update_attempt(attempt)
 	score = 0

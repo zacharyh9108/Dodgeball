@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
+signal leaderboard
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,7 @@ func show_game_over():
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
+	$LeaderboardButton.show()
 	$StartButton.show()
 	
 func update_score(score):
@@ -39,3 +41,7 @@ func _on_message_timer_timeout():
 	
 func update_attempt(attempt):
 	$AttemptLabel.text = str(attempt)
+	
+func _on_leaderboard_button_pressed():
+		$LeaderboardButton.hide()
+		leaderboard.emit()

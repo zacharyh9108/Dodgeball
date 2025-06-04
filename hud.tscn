@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://0p6m86cq8vya"]
+[gd_scene load_steps=2 format=3 uid="uid://bscsrd7iq42vm"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_wwa6v"]
 
@@ -29,7 +29,9 @@ offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "Dodge the phantoms!"
+text = "Avoid the phantoms!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AttemptLabel" type="Label" parent="."]
 offset_left = 20.0
@@ -62,17 +64,33 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -260.0
-offset_right = 100.0
-offset_bottom = -160.0
+offset_left = -201.0
+offset_top = -245.0
+offset_right = -1.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Leaderboard"
 
+[node name="CharacterButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = 115.0
+offset_right = 204.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Characters"
+
 [node name="MessageTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="CharacterButton" to="." method="_on_character_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

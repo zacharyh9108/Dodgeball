@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://75dmqu0nkfa4"]
+[gd_scene load_steps=9 format=3 uid="uid://bc7ujfh2agdo5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_4lnlv"]
-[ext_resource type="PackedScene" uid="uid://c6o2mpqmra1io" path="res://mob.tscn" id="2_cxehb"]
-[ext_resource type="PackedScene" uid="uid://dia3n6df8bj4n" path="res://player.tscn" id="3_cf7ta"]
-[ext_resource type="PackedScene" uid="uid://0p6m86cq8vya" path="res://hud.tscn" id="4_mrcpv"]
-[ext_resource type="AudioStream" uid="uid://cnd336b5y6dhf" path="res://Music.mp3" id="5_c500y"]
-[ext_resource type="AudioStream" uid="uid://2vm8gmn1o6y0" path="res://Death.mp3" id="6_yr3aq"]
-[ext_resource type="Texture2D" uid="uid://dfd2fei83js3u" path="res://Hexagon-Pattern.png" id="7_qvei2"]
+[ext_resource type="PackedScene" path="res://mob.tscn" id="2_cxehb"]
+[ext_resource type="PackedScene" uid="uid://bh7j54nbs6lcq" path="res://player.tscn" id="3_cf7ta"]
+[ext_resource type="PackedScene" uid="uid://bscsrd7iq42vm" path="res://hud.tscn" id="4_mrcpv"]
+[ext_resource type="AudioStream" uid="uid://cnd336b5y6dhf" path="res://assets/Music.mp3" id="5_c500y"]
+[ext_resource type="AudioStream" uid="uid://2vm8gmn1o6y0" path="res://assets/Death.mp3" id="6_yr3aq"]
+[ext_resource type="Texture2D" uid="uid://dfd2fei83js3u" path="res://assets/Hexagon-Pattern.png" id="7_qvei2"]
 
 [sub_resource type="Curve2D" id="Curve2D_3jpc1"]
 _data = {

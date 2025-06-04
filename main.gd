@@ -22,6 +22,7 @@ func game_over():
 
 func new_game():
 	$HUD/LeaderboardButton.hide()
+	$HUD/CharacterButton.hide()
 	attempt += 1
 	$HUD.update_attempt(attempt)
 	score = 0

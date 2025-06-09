@@ -21,8 +21,8 @@ func game_over():
 	$DeathSound.play()
 
 func new_game():
+	$HUD/OptionButton.hide()
 	$HUD/LeaderboardButton.hide()
-	$HUD/CharacterButton.hide()
 	attempt += 1
 	$HUD.update_attempt(attempt)
 	score = 0

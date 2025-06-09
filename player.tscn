@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh7j54nbs6lcq"]
+[gd_scene load_steps=10 format=3 uid="uid://bh7j54nbs6lcq"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_m7iat"]
 [ext_resource type="Texture2D" uid="uid://etpcv55qjla4" path="res://assets/Donatello.png" id="2_mm3gd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b55n7wd1y4wk0" path="res://assets/Angry.png" id="3_w4to3"]
 [ext_resource type="Texture2D" uid="uid://si3r550vxmbu" path="res://assets/Ginger.png" id="4_l11lx"]
 [ext_resource type="Texture2D" uid="uid://4ha3djiquyr6" path="res://assets/IronMan.png" id="5_47q7u"]
+[ext_resource type="Script" path="res://Sprite2D.gd" id="7_6sh82"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lyc7n"]
 animations = [{
@@ -43,5 +44,9 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vj6u7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("7_6sh82")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

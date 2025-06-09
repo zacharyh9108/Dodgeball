@@ -29,7 +29,7 @@ func show_game_over():
 	await get_tree().create_timer(1.0).timeout
 	$LeaderboardButton.show()
 	$StartButton.show()
-	$CharacterButton.show()
+	$OptionButton.show()
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)
@@ -48,6 +48,5 @@ func _on_leaderboard_button_pressed():
 	$LeaderboardButton.hide()
 	leaderboard.emit()
 
-func _on_character_button_pressed():
-	$CharacterButton.hide()
-	character.emit()
+func _on_option_button_item_selected(index):
+	pass

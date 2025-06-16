@@ -1,16 +1,16 @@
 extends Area2D
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
-var screen_size # Size of the game window.
+@export var speed = 400 # Speed (pixels/sec)
+var screen_size # Size of the game window
 signal hit
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	hide()
 	screen_size = get_viewport_rect().size
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	var velocity = Vector2.ZERO
+
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -20,17 +20,30 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 
+	# Only move if there's input
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-	
+		if velocity.x < 0:
+			$AnimatedSprite2D.animation = "move"
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.animation = "move"
+			$AnimatedSprite2D.flip_h = false
+		if not $WoodSound.playing:
+			$WoodSound.play()
+	else:
+		$AnimatedSprite2D.animation = "idle"
+
+		if $WoodSound.playing:
+			$WoodSound.stop()
+
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
-
-func _on_body_entered(body):
-	hide() # Player disappears after being hit.
+func _on_body_entered(_body: Node2D) -> void:
+	hide()
+	$DeathSound.play()
 	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
 
 func start(pos):

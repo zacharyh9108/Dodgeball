@@ -1,52 +1,49 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh7j54nbs6lcq"]
+[gd_scene load_steps=8 format=3 uid="uid://bn1s2bgbu84r8"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_m7iat"]
-[ext_resource type="Texture2D" uid="uid://etpcv55qjla4" path="res://assets/Donatello.png" id="2_mm3gd"]
-[ext_resource type="Texture2D" uid="uid://d2d6hyv8cj6gv" path="res://assets/icon.svg" id="2_t30jl"]
-[ext_resource type="Texture2D" uid="uid://b55n7wd1y4wk0" path="res://assets/Angry.png" id="3_w4to3"]
-[ext_resource type="Texture2D" uid="uid://si3r550vxmbu" path="res://assets/Ginger.png" id="4_l11lx"]
-[ext_resource type="Texture2D" uid="uid://4ha3djiquyr6" path="res://assets/IronMan.png" id="5_47q7u"]
-[ext_resource type="Script" path="res://Sprite2D.gd" id="7_6sh82"]
+[ext_resource type="Script" uid="uid://r26fsodh6okd" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://o41gs6xnrgnv" path="res://assets/images/PlayerIdle.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://dohv7nt2uo440" path="res://assets/images/PlayerMove.png" id="3_hqtel"]
+[ext_resource type="AudioStream" uid="uid://5t4crjbc7n1p" path="res://assets/audio/DodgeballSoundEffect.mp3" id="4_hqtel"]
+[ext_resource type="AudioStream" uid="uid://t5kbun8qjawb" path="res://assets/audio/RunOnWood.mp3" id="5_sweqy"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lyc7n"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mm3gd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_w4to3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_l11lx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_47q7u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_t30jl")
+"texture": ExtResource("2_i3pqv")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": true,
+"name": &"move",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj6u7"]
-size = Vector2(52, 52)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
+size = Vector2(37, 73)
 
 [node name="Player" type="Area2D"]
-script = ExtResource("1_m7iat")
+script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-sprite_frames = SubResource("SpriteFrames_lyc7n")
-metadata/_edit_group_ = true
+scale = Vector2(0.175, 0.175)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vj6u7")
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_2hs0m")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-script = ExtResource("7_6sh82")
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hqtel")
+
+[node name="WoodSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_sweqy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

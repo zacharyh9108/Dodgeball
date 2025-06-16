@@ -1,40 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc7ujfh2agdo5"]
+[gd_scene load_steps=9 format=3 uid="uid://53dojj6cjrcj"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_4lnlv"]
-[ext_resource type="PackedScene" path="res://mob.tscn" id="2_cxehb"]
-[ext_resource type="PackedScene" uid="uid://bh7j54nbs6lcq" path="res://player.tscn" id="3_cf7ta"]
-[ext_resource type="PackedScene" uid="uid://bscsrd7iq42vm" path="res://hud.tscn" id="4_mrcpv"]
-[ext_resource type="AudioStream" uid="uid://cnd336b5y6dhf" path="res://assets/Music.mp3" id="5_c500y"]
-[ext_resource type="AudioStream" uid="uid://2vm8gmn1o6y0" path="res://assets/Death.mp3" id="6_yr3aq"]
-[ext_resource type="Texture2D" uid="uid://dfd2fei83js3u" path="res://assets/Hexagon-Pattern.png" id="7_qvei2"]
+[ext_resource type="Script" uid="uid://cf83j4jnn11ox" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://csv783m7bihu3" path="res://ball.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bn1s2bgbu84r8" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bke26x440tc16" path="res://assets/images/Court.png" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://6vfarifmsvee" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bmm0k7w2ipyk7" path="res://assets/audio/IYCDAWYCDAB.mp3" id="7_kek77"]
+[ext_resource type="AudioStream" uid="uid://dyv8t2vi5w7gv" path="res://assets/audio/CrowdCheer.mp3" id="8_4c57u"]
 
-[sub_resource type="Curve2D" id="Curve2D_3jpc1"]
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1368, 0, 0, 0, 0, 0, 1368, 768, 0, 0, 0, 0, 0, 768, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
 [node name="Main" type="Node"]
-script = ExtResource("1_4lnlv")
-mob_scene = ExtResource("2_cxehb")
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_1bvp3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.53053, 0.00368142, 0.955435, 1)
+[node name="Court" type="TextureRect" parent="."]
+offset_left = -88.0
+offset_top = -130.0
+offset_right = 1448.0
+offset_bottom = 894.0
+texture = ExtResource("3_lquwl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_qvei2")
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
 
-[node name="MobTimer" type="Timer" parent="."]
+[node name="BallTimer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
@@ -44,40 +37,25 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(240, 450)
+position = Vector2(270, 384)
 
-[node name="MobPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_3jpc1")
+[node name="BallPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1bvp3")
 
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+[node name="BallSpawnLocation" type="PathFollow2D" parent="BallPath"]
 
-[node name="Player" parent="." instance=ExtResource("3_cf7ta")]
-
-[node name="HUD" parent="." instance=ExtResource("4_mrcpv")]
+[node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_c500y")
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_yr3aq")
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kek77")
 
-[node name="LineEdit" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(400, 0)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 75.0
-offset_right = 200.0
-offset_bottom = 117.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
-text = "New name: "
-max_length = 24
-expand_to_text_length = true
+[node name="SoundEffect2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4c57u")
 
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="hit" from="Player" to="." method="game_end"]
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

@@ -2,67 +2,60 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
-var attempt = 0
+@export var music_tracks = [preload("res://assets/audio/MovieTickets.mp3"), 
+							preload("res://assets/audio/VendettaPreppies.mp3"),
+							preload("res://assets/audio/Wildstyle.mp3")]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	if Input.is_action_pressed("start_game_input"):
-		new_game()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
 	pass
 
-func game_over():
+func game_end() -> void:
 	$ScoreTimer.stop()
-	$MobTimer.stop()
+	$BallTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
-	$DeathSound.play()
 
 func new_game():
-	$HUD/OptionButton.hide()
-	$HUD/LeaderboardButton.hide()
-	attempt += 1
-	$HUD.update_attempt(attempt)
+	get_tree().call_group("balls", "queue_free")
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
-	get_tree().call_group("mobs", "queue_free")
-	$DeathSound.stop()
-	$Music.play()
+	$HUD.show_message("Be Prepared")
+	
+	if randi() % 5 == 0:
+		$SoundEffect.play()
+	
+	if music_tracks.size() > 0:
+		$Music.stream = music_tracks.pick_random()
+		$Music.stream.loop = true
+		$Music.play()
 
-func _on_mob_timer_timeout():
-	# Create a new instance of the Mob scene.
-	var mob = mob_scene.instantiate()
+func _on_ball_timer_timeout() -> void:
+	var ball = mob_scene.instantiate()
 
-	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
+	var ball_spawn_location = $BallPath/BallSpawnLocation
+	ball_spawn_location.progress_ratio = randf()
+	ball.position = ball_spawn_location.position
 
-	# Set the mob's position to the random location.
-	mob.position = mob_spawn_location.position
+	# Set the mob's direction perpendicular to the path direction
+	var direction = ball_spawn_location.rotation + PI / 2
 
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
-
-	# Add some randomness to the direction.
 	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+	ball.rotation = direction
 
-	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
+	ball.linear_velocity = velocity.rotated(direction)
 
-	# Spawn the mob by adding it to the Main scene.
-	add_child(mob)
+	add_child(ball)
 
-func _on_score_timer_timeout():
+func _on_score_timer_timeout() -> void:
 	score += 1
 	$HUD.update_score(score)
+	
+	if score % 100 == 0:
+		$SoundEffect2.play()
 
-func _on_start_timer_timeout():
-	$MobTimer.start()
+func _on_start_timer_timeout() -> void:
+	$BallTimer.start()
 	$ScoreTimer.start()

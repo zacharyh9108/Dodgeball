@@ -1,27 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bscsrd7iq42vm"]
+[gd_scene load_steps=2 format=3 uid="uid://6vfarifmsvee"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_wwa6v"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_pwlrm"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_5qfkr"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_7o6x3"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_a4t6c"]
+[ext_resource type="Script" uid="uid://cihhk3y8ugtxc" path="res://hud.gd" id="1_37p78"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_wwa6v")
+script = ExtResource("1_37p78")
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -15.0
-offset_right = 25.0
-offset_bottom = 67.0
+offset_left = -108.0
+offset_top = 10.0
+offset_right = -68.0
+offset_bottom = 98.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 text = "0"
 
 [node name="Message" type="Label" parent="."]
@@ -30,87 +23,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = -33.5
-offset_right = 167.0
-offset_bottom = 33.5
+offset_left = 67.5
+offset_top = -374.0
+offset_right = 396.5
+offset_bottom = -286.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "Avoid the phantoms!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AttemptLabel" type="Label" parent="."]
-offset_left = 20.0
-offset_top = 15.0
-offset_right = 30.0
-offset_bottom = 38.0
-text = "0"
-metadata/_edit_use_anchors_ = true
+theme_override_font_sizes/font_size = 64
+text = "Dodgeball!"
 
 [node name="StartButton" type="Button" parent="."]
-custom_minimum_size = Vector2(200, 100)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -140.0
-offset_right = 100.0
-offset_bottom = -40.0
+offset_left = -79.0
+offset_top = -218.0
+offset_right = 79.0
+offset_bottom = -122.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 text = "Start"
-
-[node name="LeaderboardButton" type="Button" parent="."]
-custom_minimum_size = Vector2(200, 100)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -201.0
-offset_top = -245.0
-offset_right = -1.0
-offset_bottom = -145.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Leaderboard"
 
 [node name="MessageTimer" type="Timer" parent="."]
 
-[node name="OptionButton" type="OptionButton" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 2.5
-offset_top = 115.0
-offset_right = 202.5
-offset_bottom = 215.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-item_count = 4
-popup/item_0/text = "Donatello"
-popup/item_0/icon = SubResource("ImageTexture_pwlrm")
-popup/item_0/id = 0
-popup/item_1/text = "Angry"
-popup/item_1/icon = SubResource("ImageTexture_5qfkr")
-popup/item_1/id = 1
-popup/item_2/text = "Ginger"
-popup/item_2/icon = SubResource("ImageTexture_7o6x3")
-popup/item_2/id = 2
-popup/item_3/text = "IronMan"
-popup/item_3/icon = SubResource("ImageTexture_a4t6c")
-popup/item_3/id = 3
-
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
-[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

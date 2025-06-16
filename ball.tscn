@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://csv783m7bihu3"]
+
+[ext_resource type="Script" uid="uid://crerup7lua7vq" path="res://ball.gd" id="1_ktgx5"]
+[ext_resource type="Texture2D" uid="uid://dofhuw8yfpc0q" path="res://assets/images/Dodgeballs.png" id="2_41u45"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_01kih"]
+radius = 43.0
+
+[node name="Ball" type="RigidBody2D" groups=["balls"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ktgx5")
+
+[node name="BlueBall" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_41u45")
+region_enabled = true
+region_rect = Rect2(162, 233, 562, 583)
+
+[node name="RedBall" type="Sprite2D" parent="." groups=["balls"]]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_41u45")
+region_enabled = true
+region_rect = Rect2(809, 233, 563, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("CircleShape2D_01kih")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

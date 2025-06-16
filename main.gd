@@ -1,6 +1,6 @@
 extends Node
 
-@export var mob_scene: PackedScene
+@export var ball_scene: PackedScene
 var score
 @export var music_tracks = [preload("res://assets/audio/MovieTickets.mp3"), 
 							preload("res://assets/audio/VendettaPreppies.mp3"),
@@ -32,19 +32,19 @@ func new_game():
 		$Music.play()
 
 func _on_ball_timer_timeout() -> void:
-	var ball = mob_scene.instantiate()
+	var ball = ball_scene.instantiate()
 
 	var ball_spawn_location = $BallPath/BallSpawnLocation
 	ball_spawn_location.progress_ratio = randf()
 	ball.position = ball_spawn_location.position
 
-	# Set the mob's direction perpendicular to the path direction
+	# Set the ball's direction perpendicular to the path direction
 	var direction = ball_spawn_location.rotation + PI / 2
 
 	direction += randf_range(-PI / 4, PI / 4)
 	ball.rotation = direction
 
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(500.0, 800.0), 0.0)
 	ball.linear_velocity = velocity.rotated(direction)
 
 	add_child(ball)
